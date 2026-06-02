@@ -36,10 +36,15 @@ html {
 }
 
 :root {
-    --color-primary-bg: #1A3038;
+    --color-primary: #1A3038;
     --color-secondary-bg: #00001B;
+    --color-accent-bg: #91B37E;
     --color-lightest: #F4ECDD;
     --color-accent: #FFCC01;
+
+    --font-size-display: 12rem;
+    --font-size-m: 2.125rem;
+    --font-size-s: 1rem;
 }
 
 body {
