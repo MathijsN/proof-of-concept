@@ -11,6 +11,30 @@ html {
     scrollbar-gutter: stable;
 }
 
+@font-face {
+    font-family: 'Larken';
+    src: url('../fonts/Larken-Regular.ttf') format('opentype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Larken';
+    src: url('../fonts/Larken-black.ttf') format('opentype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Regular.woff2') format('opentype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Bold.woff2') format('opentype');
+    font-weight: 700;
+}
+
 :root {
     --color-primary-bg: #1A3038;
     --color-secondary-bg: #00001B;
@@ -19,5 +43,5 @@ html {
 }
 
 body {
-    background-color: var(--color-accent);
+    background-color: var(--color-primary-bg);
 }
