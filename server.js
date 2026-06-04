@@ -15,7 +15,16 @@ app.set('views', './views')
 // Gebruikers id Anne-Fleur Pietersen
 
 app.get('/', async function (request, response) {
-    response.render('index.liquid')
+
+    const sectionsApiResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_exhibits_sections')
+    const sectionsApiResponseJSON = await sectionsApiResponse.json()
+    const sectionsList = sectionsApiResponseJSON.data
+
+    const exhibitApiResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_exhibits/1')
+    const eexhibitApiResponseJSON = await exhibitApiResponse.json()
+    const exhibit = eexhibitApiResponseJSON.data
+
+    response.render('index.liquid', { sectionsList, exhibit })
 })
 
 
