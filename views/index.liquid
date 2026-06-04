@@ -6,10 +6,9 @@
 <section class="timeline">
   {% assign sortedSections = sectionsList | sort: 'start_year' %}
   {% for section in sortedSections %}
-    <article>
+    <article class="timeline-card">
       <h2 class="year">{{ section.start_year }}</h2>
       <p class="title">{{ section.title }}</p>
-      <div class="divider"></div>
       <p class="summary">
         {{ section.summary }}
       </p>
@@ -27,6 +26,37 @@
         >
       {% endif %}
     </article>
+    <p class="info">{{ section.summary }}</p>
+    <div popover id="{{ section.id }}">
+      <h2>{{ section.title }}</h2>
+      <p>{{ section.summary }}</p>
+    </div>
+  {% endfor %}
+</section>
+<section class="timeline">
+  {% assign sortedSections = sectionsList | sort: 'start_year' %}
+  {% for section in sortedSections %}
+    <article class="timeline-card">
+      <h2 class="year">{{ section.start_year }}</h2>
+      <p class="title">{{ section.title }}</p>
+      <p class="summary">
+        {{ section.summary }}
+      </p>
+      <button popovertarget="{{ section.id }}">Meer informatie</button>
+      {% comment %} <img src="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=webp" alt=""> {% endcomment %}
+      {% if section.cover != null %}
+        <img
+          src="https://fdnd-agency.directus.app/assets/{{ section.cover }}"
+          loading="lazy"
+        >
+      {% else %}
+        <img
+          src="https://images.unsplash.com/photo-1780369088774-b6944e7ec5b5?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          loading="lazy"
+        >
+      {% endif %}
+    </article>
+    <p class="info">{{ section.summary }}</p>
     <div popover id="{{ section.id }}">
       <h2>{{ section.title }}</h2>
       <p>{{ section.summary }}</p>
