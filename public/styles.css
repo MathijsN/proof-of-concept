@@ -59,7 +59,7 @@ body {
 }
 
 section:nth-of-type(1) {
-    height: 50vh;
+    /* height: 50vh; */
 }
 
 h1 {
@@ -78,14 +78,13 @@ section.timeline {
 
     @media screen and (width > 48rem) {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(12, 1fr);
     }
 
     article {
         width: 100%;
         height: 45rem;
         position: sticky;
-        /* top: calc(sibling-index() * 40px); */
         top: 40px;
         padding: 1.5rem;
         padding-top: 3rem;
@@ -97,26 +96,44 @@ section.timeline {
         animation: --fade-out linear forwards;
         animation-timeline: view(100% 95%);
 
-        @media screen and (width > 48rem) {
+        @media (width > 48rem) {
             display: grid;
-            grid-template-columns: min-content 1fr;
+            gap: 1rem;
+            grid-template-columns: min-content 1fr max-content;
             grid-template-rows: min-content max-content;
             position: relative;
             background-color: transparent;
             grid-column: 1/-1;
+            height: max-content;
+            padding: 0;
+            margin-block: 2rem;
 
-            &:nth-of-type(3n + 1) {
-                grid-column: 1/5;
+            animation: --big-screen-fade-in linear;
+            animation-timeline: view();
+            animation-range: entry;
 
+            &:nth-of-type(4n + 1) {
+                grid-column: 2/9;
             }
 
-            &:nth-of-type(3n + 2) {
-                /* place-self: end; */
-                grid-column-start: 4;
+            &:nth-of-type(4n + 2) {
+                grid-column-start: 6;
+
+                img {
+                    max-height: unset;
+                }
             }
 
-            &:nth-of-type(3n + 3) {
-                /* grid-column-start: 0; */
+            &:nth-of-type(4n + 3) {
+                grid-column: 2/13;
+            }
+
+            &:nth-of-type(4n + 4) {
+                grid-column: 4/10;
+
+                img {
+                    max-height: unset;
+                }
             }
         }
 
@@ -144,13 +161,21 @@ section.timeline {
                 }
             }
 
-            &.title {}
+            &.title {
+                @media screen and (width > 48rem) {
+                    align-self: center;
+                }
+            }
         }
 
         h2 {
             font-size: var(--font-size-m);
             font-family: Larken, 'Times New Roman', Times, serif;
             font-weight: 500;
+
+            @media screen and (width > 48rem) {
+                align-self: end;
+            }
         }
 
         .divider {
@@ -163,18 +188,45 @@ section.timeline {
             }
         }
 
+        button {
+            background-color: var(--color-accent);
+            font-size: var(--font-size-xs);
+            border: 1px solid var(--color-accent);
+            padding: 0.5rem 1rem;
+            height: 45px;
+            transition: all 0.3s ease;
+
+            @media (any-pointer: fine) {
+                &:hover {
+                    cursor: pointer;
+                    border: 1px solid var(--color-accent);
+                    background-color: transparent;
+                    color: var(--color-accent);
+                    transition: all 0.3s ease;
+                }
+            }
+
+        }
+
         img {
             width: 100%;
             aspect-ratio: 1/1;
             object-fit: cover;
             justify-self: end;
+            background-color: var(--color-secondary-bg);
 
             @media screen and (width > 48rem) {
                 grid-column: 1/-1;
                 aspect-ratio: unset;
-
+                max-height: 50vh;
             }
         }
+    }
+
+    [popover]:popover-open {
+        width: 10rem;
+        height: 10rem;
+        background-color: #00001B;
     }
 }
 
@@ -192,5 +244,17 @@ section.timeline {
         transform: translateY(-8rem);
         scale: 0.9;
         border-radius: 1rem;
+    }
+}
+
+@keyframes --big-screen-fade-in {
+    0% {
+        scale: 0.4;
+        opacity: 0;
+    }
+
+    100% {
+        scale: 1;
+        opacity: 1;
     }
 }
