@@ -1,33 +1,22 @@
 {% render 'partials/head.liquid', title: 'index' %}
-<section></section>
 <section>
-  <article>
-    <h2>1745</h2>
-    <p>Uitvinding van de Leidse fles</p>
-    <div class="divider"></div>
-    <p>
-      Zonder de Leidse fles, een vroege “batterij” om elektriciteit op te slaan, zou de Grote Elektriseermachine niet
-      mogelijk zijn geweest. Dit is de technische basis.
-    </p>
-  </article>
-  <article>
-    <h2>1745</h2>
-    <p>Uitvinding van de Leidse fles</p>
-    <p>
-      Zonder de Leidse fles, een vroege “batterij” om elektriciteit op te slaan, zou de Grote Elektriseermachine niet
-      mogelijk zijn geweest. Dit is de technische basis.
-    </p>
-  </article>
-  <article>
-    <h2>1745</h2>
-    <p>Uitvinding van de Leidse fles</p>
-    <p>
-      Zonder de Leidse fles, een vroege “batterij” om elektriciteit op te slaan, zou de Grote Elektriseermachine niet
-      mogelijk zijn geweest. Dit is de technische basis.
-    </p>
-  </article>
-  <article></article>
-  <article></article>
+  <h1>{{ exhibit.title }}</h1>
+  <p>{{ exhibit.short_description }}</p>
+</section>
+<section>
+  {% assign sortedSections = sectionsList | sort: 'start_year' %}
+  {% for section in sortedSections %}
+    <article>
+      <h2>{{ section.start_year }}</h2>
+      <p>{{ section.title }}</p>
+      <div class="divider"></div>
+      <p>
+        Zonder de Leidse fles, een vroege “batterij” om elektriciteit op te slaan, zou de Grote Elektriseermachine niet
+        mogelijk zijn geweest. Dit is de technische basis.
+      </p>
+      <img src="https://fdnd-agency.directus.app/assets/{{ section.cover }}" alt="">
+    </article>
+  {% endfor %}
 </section>
 
 {% render 'partials/footer.liquid' %}
