@@ -3,18 +3,24 @@
   <h1>{{ exhibit.title }}</h1>
   <p>{{ exhibit.short_description }}</p>
 </section>
-<section>
+<section class="timeline">
   {% assign sortedSections = sectionsList | sort: 'start_year' %}
   {% for section in sortedSections %}
     <article>
-      <h2>{{ section.start_year }}</h2>
-      <p>{{ section.title }}</p>
+      <h2 class="year">{{ section.start_year }}</h2>
+      <p class="title">{{ section.title }}</p>
       <div class="divider"></div>
-      <p>
-        Zonder de Leidse fles, een vroege “batterij” om elektriciteit op te slaan, zou de Grote Elektriseermachine niet
-        mogelijk zijn geweest. Dit is de technische basis.
+      <p class="summary">
+        {{ section.summary }}
       </p>
-      <img src="https://fdnd-agency.directus.app/assets/{{ section.cover }}" alt="">
+      {% if section.cover != null %}
+        <img src="https://fdnd-agency.directus.app/assets/{{ section.cover }}" alt="">
+      {% else %}
+        <img
+          src="https://images.unsplash.com/photo-1780049921469-4afa2c328d4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+        >
+      {% endif %}
     </article>
   {% endfor %}
 </section>
