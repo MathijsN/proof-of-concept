@@ -270,8 +270,8 @@ section.timeline {
 
 @keyframes --big-screen-fade-in {
     0% {
-        scale: 0.4;
-        opacity: 0;
+        scale: 0.9;
+        opacity: 0.2;
     }
 
     100% {
