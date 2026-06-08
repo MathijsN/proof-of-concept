@@ -80,7 +80,9 @@ button {
     width: max-content;
 
     @media (any-pointer: fine) {
-        &:hover {
+
+        &:hover,
+        &:active {
             cursor: pointer;
             border: 1px solid var(--color-accent);
             background-color: transparent;
