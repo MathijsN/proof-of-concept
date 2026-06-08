@@ -58,10 +58,6 @@ body {
     font-weight: 500;
 }
 
-section:nth-of-type(1) {
-    /* height: 50vh; */
-}
-
 h1 {
     font-size: var(--font-size-m);
     color: var(--color-lightest);
@@ -74,12 +70,32 @@ p {
     color: var(--color-lightest);
 }
 
+button {
+    background-color: var(--color-accent);
+    font-size: var(--font-size-xs);
+    border: 1px solid var(--color-accent);
+    padding: 0.5rem 1rem;
+    height: 45px;
+    transition: all 0.3s ease;
+    width: max-content;
+
+    @media (any-pointer: fine) {
+        &:hover {
+            cursor: pointer;
+            border: 1px solid var(--color-accent);
+            background-color: transparent;
+            color: var(--color-accent);
+            transition: all 0.3s ease;
+        }
+    }
+}
+
 section.timeline {
 
     @media screen and (width > 48rem) {
         display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        row-gap: 2rem;
+        grid-template-columns: repeat(6, 1fr);
+        row-gap: 20vh;
     }
 
     .timeline-card {
@@ -99,56 +115,6 @@ section.timeline {
         background-color: #102F35;
         filter: drop-shadow(0px 0px 10px #0000005a);
 
-        @media (width > 48rem) {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: min-content 1fr max-content;
-            grid-template-rows: min-content max-content;
-            position: relative;
-            background-color: transparent;
-            grid-column: 1/-1;
-            height: max-content;
-            padding: 0;
-            margin-block: 2rem;
-            border-radius: 0;
-            filter: none;
-
-            animation: --big-screen-fade-in linear;
-            animation-timeline: view();
-            animation-range: entry;
-
-            &:nth-of-type(4n + 1) {
-                grid-column: 2/9;
-            }
-
-            &:nth-of-type(4n + 2) {
-                grid-column-start: 6;
-
-                img {
-                    max-height: unset;
-                }
-            }
-
-            &:nth-of-type(4n + 3) {
-                grid-column: 2/13;
-            }
-
-            &:nth-of-type(4n + 4) {
-                grid-column: 4/10;
-
-                img {
-                    max-height: unset;
-                }
-            }
-        }
-
-        &:nth-of-type(even) {
-
-            @media screen and (width > 48rem) {
-                background-color: transparent;
-            }
-        }
-
         .year,
         p {
             color: var(--color-lightest);
@@ -158,48 +124,12 @@ section.timeline {
             font-size: var(--font-size-xs);
             font-family: inter, Arial, Helvetica, sans-serif;
             margin-block: 0;
-
-            &.summary {
-                @media screen and (width > 48rem) {
-                    display: none;
-                }
-            }
-
-            &.title {
-                @media screen and (width > 48rem) {
-                    align-self: center;
-                }
-            }
         }
 
         h2 {
             font-size: var(--font-size-m);
             font-family: Larken, 'Times New Roman', Times, serif;
             font-weight: 500;
-
-            @media (width > 48rem) {
-                align-self: end;
-            }
-        }
-
-        button {
-            background-color: var(--color-accent);
-            font-size: var(--font-size-xs);
-            border: 1px solid var(--color-accent);
-            padding: 0.5rem 1rem;
-            height: 45px;
-            transition: all 0.3s ease;
-            width: max-content;
-
-            @media (any-pointer: fine) {
-                &:hover {
-                    cursor: pointer;
-                    border: 1px solid var(--color-accent);
-                    background-color: transparent;
-                    color: var(--color-accent);
-                    transition: all 0.3s ease;
-                }
-            }
         }
 
         img {
@@ -208,48 +138,157 @@ section.timeline {
             object-fit: cover;
             justify-self: end;
             background-color: var(--color-secondary-bg);
+        }
 
-            @media screen and (width > 48rem) {
-                grid-column: 1/-1;
+        @media (width > 48rem) {
+            width: 100%;
+            display: grid;
+            grid-column: 1/-1;
+            grid-template-columns: subgrid;
+            grid-template-rows: repeat(2, min-content);
+            background-color: transparent;
+            filter: none;
+            border-radius: 0;
+            position: relative;
+            padding: 0;
+            gap: 1rem;
+            height: fit-content;
+
+            animation: --big-screen-fade-in linear;
+            animation-timeline: view();
+            animation-range: entry;
+
+            .title {
+                align-self: center;
+            }
+
+            .summary {
+                max-width: 20rem;
+            }
+
+            button {
+                place-self: end;
+            }
+
+            img {
                 aspect-ratio: unset;
                 max-height: 50vh;
             }
-        }
-    }
 
-    .info {
-        display: none;
-
-        @media screen and (width > 48rem) {
-            display: block;
-            margin-top: 1rem;
-
-            &:nth-of-type(4n + 1) {
-                grid-column: 10/13;
+            .year {
                 align-self: end;
             }
 
+            &:nth-of-type(4n + 1) {
+
+                .year {
+                    grid-column: 1/2;
+                }
+
+                .title {
+                    grid-column: 2/4;
+                }
+
+                button {
+                    grid-column: 4/5;
+                }
+
+                .summary {
+                    grid-row: 2/3;
+                    grid-column: 5/-1;
+                    align-self: end;
+                }
+
+                img {
+                    grid-column: 1/5;
+                }
+            }
+
             &:nth-of-type(4n + 2) {
-                grid-column: 7/11;
+                .year {
+                    grid-column: 3/4;
+                }
+
+                .title {
+                    grid-column: 4/6;
+                }
+
+                button {
+                    grid-column: 6/7;
+                }
+
+                .summary {
+                    grid-row: 2/3;
+                    grid-column: 1/3;
+                    align-self: end;
+                }
+
+                img {
+                    max-height: 75vh;
+                    grid-column: 3/-1;
+                }
             }
 
             &:nth-of-type(4n + 3) {
-                grid-column: 2/6;
+                .year {
+                    grid-column: 1/2;
+                }
+
+                .title {
+                    grid-column: 2/4;
+                }
+
+                button {
+                    grid-column: 6/-1;
+                    justify-self: end;
+                }
+
+                .summary {
+                    grid-row: 3/4;
+                    grid-column: 4/-1;
+                }
+
+                img {
+                    max-height: 50vh;
+                    grid-column: 1/-1;
+                }
             }
 
             &:nth-of-type(4n + 4) {
-                grid-column: 7/11;
+                .year {
+                    grid-column: 2/3;
+                }
+
+                .title {
+                    grid-column: 3/5;
+                }
+
+                button {
+                    grid-column: 6/7;
+                    justify-self: end;
+                }
+
+                .summary {
+                    grid-row: 3/4;
+                    grid-column: 2/4;
+                }
+
+                img {
+                    max-height: 75vh;
+                    grid-column: 2/-1;
+                }
             }
         }
-
-    }
-
-    [popover]:popover-open {
-        width: 10rem;
-        height: 10rem;
-        background-color: #00001B;
     }
 }
+
+
+[popover]:popover-open {
+    width: 10rem;
+    height: 10rem;
+    background-color: #00001B;
+}
+
 
 @keyframes --fade-out {
     0% {
