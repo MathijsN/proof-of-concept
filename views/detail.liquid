@@ -1,0 +1,8 @@
+{% render 'partials/head.liquid', title: {{ section.start_year }} %}
+<h1>{{ section.title }}</h1>
+
+{% for content in section.exhibit.content_blocks %}
+  {% render 'partials/{{content.block_type}}.liquid', content: content.text %}
+{% endfor %}
+
+{% render 'partials/footer.liquid' %}

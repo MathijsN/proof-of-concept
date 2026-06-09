@@ -6,30 +6,40 @@
 <section class="timeline">
   {% assign sortedSections = sectionsList | sort: 'start_year' %}
   {% for section in sortedSections %}
-    <article class="timeline-card">
+    <article class="timeline-card" id="{{ section.id }}" style="--scroll-amount: {{ forloop.rindex }}">
       <h2 class="year">{{ section.start_year }}</h2>
       <p class="title">{{ section.title }}</p>
       <p class="summary">
         {{ section.summary }}
       </p>
-      <button popovertarget="{{ section.id }}">Meer informatie</button>
+      <a href="/detail/{{ section.slug }}">Meer informatie</a>
       {% comment %} <img src="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=webp" alt=""> {% endcomment %}
-      {% if section.cover != null %}
-        <img
-          src="https://fdnd-agency.directus.app/assets/{{ section.cover }}"
-          loading="lazy"
-        >
-      {% else %}
-        <img
-          src="https://images.unsplash.com/photo-1780369088774-b6944e7ec5b5?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          loading="lazy"
-        >
-      {% endif %}
+      <img
+        src="https://fdnd-agency.directus.app/assets/{{ section.cover }}"
+        loading="lazy"
+      >
     </article>
-    <div popover id="{{ section.id }}">
-      <h2>{{ section.title }}</h2>
-      <p>{{ section.summary }}</p>
-    </div>
+  {% endfor %}
+</section>
+<section class="quiz">
+  {% for question in quiz %}
+    <article>
+      <h2>Vraag {{ forloop.index }}</h2>
+      <a href="#{{ question.exhibit_section }}"
+        >Hint
+        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.4992 5.58835C9.05457 5.58835 8.62815 5.76498 8.31375 6.07938C7.99935 6.39378 7.82273 6.82019 7.82273 7.26482V7.38441C7.82273 7.53262 7.76385 7.67476 7.65905 7.77956C7.55425 7.88436 7.41211 7.94323 7.2639 7.94323C7.11569 7.94323 6.97355 7.88436 6.86875 7.77956C6.76395 7.67476 6.70508 7.53262 6.70508 7.38441V7.26482C6.70508 6.52377 6.99946 5.81308 7.52346 5.28908C8.04745 4.76508 8.75815 4.4707 9.4992 4.4707H9.62884C10.173 4.47087 10.7041 4.63766 11.1507 4.94865C11.5973 5.25964 11.9379 5.69992 12.1268 6.21027C12.3157 6.72062 12.3438 7.27658 12.2073 7.80338C12.0709 8.33018 11.7764 8.80256 11.3634 9.157L10.5017 9.89576C10.3628 10.0152 10.2512 10.1632 10.1746 10.3296C10.0981 10.4961 10.0583 10.6771 10.058 10.8603V11.456C10.058 11.6042 9.99914 11.7463 9.89434 11.8511C9.78954 11.9559 9.6474 12.0148 9.4992 12.0148C9.35099 12.0148 9.20885 11.9559 9.10405 11.8511C8.99925 11.7463 8.94037 11.6042 8.94037 11.456V10.8603C8.94037 10.1629 9.24549 9.50123 9.77414 9.04747L10.6347 8.30982C10.8747 8.1042 11.046 7.83 11.1254 7.52411C11.2049 7.21823 11.1888 6.89535 11.0792 6.59891C10.9696 6.30247 10.7719 6.04671 10.5126 5.86604C10.2533 5.68537 9.94488 5.58846 9.62884 5.58835H9.4992ZM9.4992 14.5295C9.72151 14.5295 9.93472 14.4412 10.0919 14.284C10.2491 14.1268 10.3374 13.9136 10.3374 13.6913C10.3374 13.469 10.2491 13.2558 10.0919 13.0986C9.93472 12.9414 9.72151 12.8531 9.4992 12.8531C9.27688 12.8531 9.06367 12.9414 8.90647 13.0986C8.74927 13.2558 8.66096 13.469 8.66096 13.6913C8.66096 13.9136 8.74927 14.1268 8.90647 14.284C9.06367 14.4412 9.27688 14.5295 9.4992 14.5295Z" fill="#FFCC01"/>
+          <path d="M0 9.5C0 6.98044 1.00089 4.56408 2.78249 2.78249C4.56408 1.00089 6.98044 0 9.5 0C12.0196 0 14.4359 1.00089 16.2175 2.78249C17.9991 4.56408 19 6.98044 19 9.5C19 12.0196 17.9991 14.4359 16.2175 16.2175C14.4359 17.9991 12.0196 19 9.5 19C6.98044 19 4.56408 17.9991 2.78249 16.2175C1.00089 14.4359 0 12.0196 0 9.5ZM9.5 1.11765C7.27686 1.11765 5.14478 2.00079 3.57278 3.57278C2.00079 5.14478 1.11765 7.27686 1.11765 9.5C1.11765 11.7231 2.00079 13.8552 3.57278 15.4272C5.14478 16.9992 7.27686 17.8824 9.5 17.8824C11.7231 17.8824 13.8552 16.9992 15.4272 15.4272C16.9992 13.8552 17.8824 11.7231 17.8824 9.5C17.8824 7.27686 16.9992 5.14478 15.4272 3.57278C13.8552 2.00079 11.7231 1.11765 9.5 1.11765Z" fill="#FFCC01"/>
+        </svg>
+      </a>
+
+      <form action="/" method="POST">
+        <input type="submit" value="a">
+        <input type="submit" value="b">
+        <input type="submit" value="c">
+        <input type="submit" value="d">
+      </form>
+    </article>
   {% endfor %}
 </section>
 {% render 'partials/footer.liquid' %}

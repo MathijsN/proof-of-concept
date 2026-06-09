@@ -9,6 +9,7 @@
 
 html {
     scrollbar-gutter: stable;
+    scroll-behavior: smooth;
 }
 
 @font-face {
@@ -51,7 +52,6 @@ html {
 
 body {
     background-color: var(--color-primary);
-    padding-inline: 1rem;
     line-height: 1.2;
 
     font-family: Larken, 'Times New Roman', Times, serif;
@@ -70,14 +70,21 @@ p {
     color: var(--color-lightest);
 }
 
-button {
+section {
+    padding-inline: 1rem;
+}
+
+a {
     background-color: var(--color-accent);
     font-size: var(--font-size-xs);
+    color: var(--color-primary);
     border: 1px solid var(--color-accent);
-    padding: 0.5rem 1rem;
-    height: 45px;
+    padding: 0.75rem 1rem;
+    display: flex;
     transition: all 0.3s ease;
     width: max-content;
+    font-family: inter, arial, sans-serif;
+    text-decoration: none;
 
     @media (any-pointer: fine) {
 
@@ -116,6 +123,8 @@ section.timeline {
         border-radius: 1rem;
         background-color: #102F35;
         filter: drop-shadow(0px 0px 10px #0000005a);
+
+        scroll-margin-top: calc(100vh * --scroll-amount);
 
         .year,
         p {
@@ -168,7 +177,7 @@ section.timeline {
                 max-width: 20rem;
             }
 
-            button {
+            a {
                 place-self: end;
             }
 
@@ -191,7 +200,7 @@ section.timeline {
                     grid-column: 2/4;
                 }
 
-                button {
+                a {
                     grid-column: 4/5;
                 }
 
@@ -215,7 +224,7 @@ section.timeline {
                     grid-column: 4/6;
                 }
 
-                button {
+                a {
                     grid-column: 6/7;
                 }
 
@@ -240,7 +249,7 @@ section.timeline {
                     grid-column: 2/4;
                 }
 
-                button {
+                a {
                     grid-column: 6/-1;
                     justify-self: end;
                 }
@@ -265,7 +274,7 @@ section.timeline {
                     grid-column: 3/5;
                 }
 
-                button {
+                a {
                     grid-column: 6/7;
                     justify-self: end;
                 }
@@ -283,14 +292,6 @@ section.timeline {
         }
     }
 }
-
-
-[popover]:popover-open {
-    width: 10rem;
-    height: 10rem;
-    background-color: #00001B;
-}
-
 
 @keyframes --fade-out {
     0% {
@@ -315,5 +316,25 @@ section.timeline {
     100% {
         scale: 1;
         opacity: 1;
+    }
+}
+
+section.quiz {
+    background-color: var(--color-secondary-bg);
+    padding-inline: 0;
+    color: var(--color-lightest);
+
+    h2 {
+        font-weight: 400;
+        font-size: var(--font-size-s);
+    }
+
+    a {
+        background-color: transparent;
+        border: 1px solid var(--color-accent);
+        color: var(--color-accent);
+        display: flex;
+        gap: 1rem;
+        border-radius: 16px;
     }
 }
