@@ -124,7 +124,11 @@ section.timeline {
         background-color: #102F35;
         filter: drop-shadow(0px 0px 10px #0000005a);
 
-        scroll-margin-top: calc(100vh * --scroll-amount);
+        scroll-margin-top: calc(45rem * var(--scroll-amount));
+
+        &:last-of-type {
+            scroll-margin-top: 3rem;
+        }
 
         .year,
         p {
@@ -383,8 +387,10 @@ section.quiz {
                 width: 100%;
 
                 input {
-                    background-color: transparent;
-                    border: none;
+                    display: none;
+                }
+
+                span {
                     font-family: larken;
                     font-weight: 700;
                     font-size: var(--font-size-l);

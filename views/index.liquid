@@ -6,7 +6,7 @@
 <section class="timeline">
   {% assign sortedSections = sectionsList | sort: 'start_year' %}
   {% for section in sortedSections %}
-    <article class="timeline-card" id="{{ section.id }}" style="--scroll-amount: {{ forloop.rindex }}">
+    <article class="timeline-card" id="{{ section.id }}" style="--scroll-amount: calc({{ forloop.rindex }} - 1)">
       <h2 class="year">{{ section.start_year }}</h2>
       <p class="title">{{ section.title }}</p>
       <p class="summary">
@@ -37,7 +37,19 @@
       <form action="/#{{ question.id }}" method="POST">
         {% for answer in question.options %}
           <label>
-            <input type="submit" value="{{ answer.key }}">
+            <input
+              type="hidden"
+              value="{{ answer.id }}"
+              name="currentId"
+            >
+            <input
+              type="submit"
+              value="{{ answer.is_correct }}"
+              name="answer"
+            >
+            <span>
+              {{ answer.key }}
+            </span>
             {{ answer.answer }}
           </label>
         {% endfor %}

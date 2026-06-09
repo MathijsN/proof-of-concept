@@ -23,9 +23,11 @@ app.get('/', async function (req, res) {
     const quizApiResponseJSON = await quizApiResponse.json()
     const quiz = quizApiResponseJSON.data
 
-    // console.log(quiz)
-    console.log(sectionsList)
-    res.render('index.liquid', { sectionsList, exhibit, quiz })
+    const status = req.query.status
+
+    console.log(status)
+
+    res.render('index.liquid', { sectionsList, exhibit, quiz, status })
 })
 
 
@@ -40,6 +42,19 @@ app.get('/detail/:slug', async function (req, res) {
     console.log(sectionsList)
 
     res.render('detail.liquid', { section: sectionsList[0] })
+})
+
+app.post('/', async function (req, res) {
+
+    const id = req.body.currentId
+
+    console.log(id)
+
+    if (req.body.answer) {
+        res.redirect(303, `/?status=${id}goed`)
+    } else {
+        res.redirect(303, `/?status=${id}fout`)
+    }
 })
 
 app.use((req, res) => {
