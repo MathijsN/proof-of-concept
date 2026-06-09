@@ -324,17 +324,72 @@ section.quiz {
     padding-inline: 0;
     color: var(--color-lightest);
 
-    h2 {
-        font-weight: 400;
-        font-size: var(--font-size-s);
-    }
 
-    a {
-        background-color: transparent;
-        border: 1px solid var(--color-accent);
-        color: var(--color-accent);
-        display: flex;
+    article {
+        height: 80dvh;
+        display: grid;
         gap: 1rem;
-        border-radius: 16px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: min-content min-content 1fr;
+        padding-inline: 1rem;
+        padding-top: 6rem;
+
+        h2 {
+            font-weight: 400;
+            font-size: var(--font-size-s);
+            align-self: center;
+        }
+
+        a {
+            background-color: transparent;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            display: flex;
+            gap: 1rem;
+            border-radius: 16px;
+            height: min-content;
+
+            justify-self: end;
+        }
+
+        p {
+            grid-column: 1/-1;
+
+            margin-block: 0;
+
+            font-size: var(--font-size-m);
+            font-family: inter, Arial, Helvetica, sans-serif;
+        }
+
+        form {
+            grid-column: 1/-1;
+            place-self: center;
+
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            label {
+                display: flex;
+                gap: 0.75rem;
+                background-color: var(--color-lightest);
+                color: var(--color-secondary-bg);
+                font-family: inter, Arial, Helvetica, sans-serif;
+                font-weight: 400;
+                font-size: var(--font-size-xs);
+                padding: 0.5rem 1rem;
+                border-radius: 1rem;
+                align-items: center;
+                width: 100%;
+
+                input {
+                    background-color: transparent;
+                    border: none;
+                    font-family: larken;
+                    font-weight: 700;
+                    font-size: var(--font-size-l);
+                }
+            }
+        }
     }
 }

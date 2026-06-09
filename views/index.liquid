@@ -23,7 +23,7 @@
 </section>
 <section class="quiz">
   {% for question in quiz %}
-    <article>
+    <article id="{{question.id}}">
       <h2>Vraag {{ forloop.index }}</h2>
       <a href="#{{ question.exhibit_section }}"
         >Hint
@@ -32,12 +32,15 @@
           <path d="M0 9.5C0 6.98044 1.00089 4.56408 2.78249 2.78249C4.56408 1.00089 6.98044 0 9.5 0C12.0196 0 14.4359 1.00089 16.2175 2.78249C17.9991 4.56408 19 6.98044 19 9.5C19 12.0196 17.9991 14.4359 16.2175 16.2175C14.4359 17.9991 12.0196 19 9.5 19C6.98044 19 4.56408 17.9991 2.78249 16.2175C1.00089 14.4359 0 12.0196 0 9.5ZM9.5 1.11765C7.27686 1.11765 5.14478 2.00079 3.57278 3.57278C2.00079 5.14478 1.11765 7.27686 1.11765 9.5C1.11765 11.7231 2.00079 13.8552 3.57278 15.4272C5.14478 16.9992 7.27686 17.8824 9.5 17.8824C11.7231 17.8824 13.8552 16.9992 15.4272 15.4272C16.9992 13.8552 17.8824 11.7231 17.8824 9.5C17.8824 7.27686 16.9992 5.14478 15.4272 3.57278C13.8552 2.00079 11.7231 1.11765 9.5 1.11765Z" fill="#FFCC01"/>
         </svg>
       </a>
+      <p>{{ question.question }}</p>
 
-      <form action="/" method="POST">
-        <input type="submit" value="a">
-        <input type="submit" value="b">
-        <input type="submit" value="c">
-        <input type="submit" value="d">
+      <form action="/#{{ question.id }}" method="POST">
+        {% for answer in question.options %}
+          <label>
+            <input type="submit" value="{{ answer.key }}">
+            {{ answer.answer }}
+          </label>
+        {% endfor %}
       </form>
     </article>
   {% endfor %}
