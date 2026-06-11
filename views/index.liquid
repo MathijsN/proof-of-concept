@@ -52,6 +52,8 @@
               answered correct
               {% elsif quizState[question.id] and quizState[question.id].isCorrect == answer.key %}
               answered wrong
+              {% elsif quizState[question.id] %}
+              answered
               {% endif %}
             "
           >

@@ -335,7 +335,7 @@ section.quiz {
 
 
     article {
-        height: 80dvh;
+        height: 100dvh;
         display: grid;
         gap: 1rem;
         grid-template-columns: repeat(2, 1fr);
@@ -401,16 +401,20 @@ section.quiz {
                 border: 0;
 
                 &.answered {
-                    scale: 1.025;
+                    filter: brightness(0.3) opacity(0.8);
                 }
 
                 &.correct {
+                    scale: 1.025;
                     background-color: var(--color-accent);
+                    filter: unset;
                 }
 
                 &.wrong {
+                    scale: 1.025;
                     background-color: var(--color-wrong);
                     color: var(--color-lightest);
+                    filter: unset;
                 }
 
                 span {
