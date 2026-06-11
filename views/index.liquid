@@ -1,5 +1,4 @@
 {% render 'partials/head.liquid', title: 'index' %}
-<a href="#timeline" class="backToTop" title="Back to Top">↑</a>
 <section>
   <h1>{{ exhibit.title }}</h1>
   <p>{{ exhibit.short_description }}</p>
@@ -21,6 +20,7 @@
       >
     </article>
   {% endfor %}
+  <a href="#timeline" class="backToTop" title="Back to Top">↑</a>
 </section>
 <section class="quiz">
   {% for question in quiz %}
