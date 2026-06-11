@@ -59,6 +59,10 @@ body {
     font-weight: 500;
 }
 
+main {
+    container-type: scroll-state;
+}
+
 h1 {
     font-size: var(--font-size-m);
     color: var(--color-lightest);
@@ -105,9 +109,23 @@ a.backToTop {
     right: 1rem;
     bottom: 1rem;
     z-index: 10;
-}
 
-@keyframes --toTop {}
+    @media (prefers-reduced-motion:no-preference) {
+        transition: .25s;
+    }
+
+    @supports (scrollable: top) {
+        translate: 0 calc(100% + 1rem);
+
+        @container scroll-state(scrollable:top) {
+            translate: 0 0;
+
+            @media (prefers-reduced-motion:no-preference) {
+                transition: .25s 1s;
+            }
+        }
+    }
+}
 
 section.timeline {
 
