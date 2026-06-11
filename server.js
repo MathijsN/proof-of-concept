@@ -8,6 +8,7 @@ const engine = new Liquid()
 app.engine('liquid', engine.express())
 app.set('views', './views')
 
+const quizState = {}
 
 app.get('/', async function (req, res) {
 
@@ -25,9 +26,9 @@ app.get('/', async function (req, res) {
 
     const status = req.query.status
 
-    console.log(status)
+    console.log(quizState)
 
-    res.render('index.liquid', { sectionsList, exhibit, quiz, status })
+    res.render('index.liquid', { sectionsList, exhibit, quiz, status, quizState: quizState })
 })
 
 
@@ -45,16 +46,12 @@ app.get('/detail/:slug', async function (req, res) {
 })
 
 app.post('/', async function (req, res) {
+    console.log(req.body.submittedAnswer)
 
-    const id = req.body.currentId
+    quizState[req.body.question] = {}
+    quizState[req.body.question]['isCorrect'] = req.body.isCorrect
 
-    console.log(id)
-
-    if (req.body.answer) {
-        res.redirect(303, `/?status=${id}goed`)
-    } else {
-        res.redirect(303, `/?status=${id}fout`)
-    }
+    res.redirect(303, `/`)
 })
 
 app.use((req, res) => {

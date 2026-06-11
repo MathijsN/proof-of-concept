@@ -173,6 +173,10 @@ section.timeline {
             animation-timeline: view();
             animation-range: entry;
 
+            &:last-of-type {
+                scroll-margin-top: 0;
+            }
+
             .title {
                 align-self: center;
             }
@@ -373,7 +377,9 @@ section.quiz {
             flex-direction: column;
             gap: 1rem;
 
-            label {
+            width: 100%;
+
+            button {
                 display: flex;
                 gap: 0.75rem;
                 background-color: var(--color-lightest);
@@ -384,10 +390,24 @@ section.quiz {
                 padding: 0.5rem 1rem;
                 border-radius: 1rem;
                 align-items: center;
+                text-align: left;
                 width: 100%;
+                border: 0;
 
-                input {
-                    display: none;
+                &:disabled {
+                    background-color: gray;
+                }
+
+                &.answered {
+                    scale: 1.02;
+                }
+
+                &.correct {
+                    background-color: aliceblue;
+                }
+
+                &.wrong {
+                    background-color: red;
                 }
 
                 span {

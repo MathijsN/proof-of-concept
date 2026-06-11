@@ -23,7 +23,9 @@
 </section>
 <section class="quiz">
   {% for question in quiz %}
-    <article id="{{question.id}}">
+    <article
+      id="{{question.id}}"
+    >
       <h2>Vraag {{ forloop.index }}</h2>
       <a href="#{{ question.exhibit_section }}"
         >Hint
@@ -34,24 +36,30 @@
       </a>
       <p>{{ question.question }}</p>
 
-      <form action="/#{{ question.id }}" method="POST">
+      <form
+        action="/#{{ question.id }}"
+        method="POST"
+        {% comment %} {% if quizState[question.id] and quizState[question.id] == 'yes' %} {% endcomment %}
+      >
+        <input name="question" value="{{ question.id }}" type="hidden">
         {% for answer in question.options %}
-          <label>
-            <input
-              type="hidden"
-              value="{{ answer.id }}"
-              name="currentId"
-            >
-            <input
-              type="submit"
-              value="{{ answer.is_correct }}"
-              name="answer"
-            >
+          <button
+            type="submit"
+            name="isCorrect"
+            value="{% if answer.is_correct %}yes{% else %}{{answer.key}}{% endif %}"
+            class="
+              {% if quizState[question.id] and quizState[question.id].isCorrect == 'yes' and answer.is_correct %}
+              answered correct
+              {% elsif quizState[question.id] and quizState[question.id].isCorrect == answer.key %}
+              answered wrong
+              {% endif %}
+            "
+          >
             <span>
               {{ answer.key }}
             </span>
             {{ answer.answer }}
-          </label>
+          </button>
         {% endfor %}
       </form>
     </article>
