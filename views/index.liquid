@@ -61,6 +61,11 @@
             {{ answer.answer }}
           </button>
         {% endfor %}
+        {% if quizState[question.id] and quizState[question.id].isCorrect == 'yes' %}
+          <p class="explanation">{{ question.explanation_correct }}</p>
+        {% elsif quizState[question.id] and quizState[question.id].isCorrect != 'yes' %}
+          <p class="explanation">{{ question.explanation_wrong }}</p>
+        {% endif %}
       </form>
     </article>
   {% endfor %}

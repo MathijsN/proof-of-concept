@@ -42,6 +42,7 @@ html {
     --color-accent-bg: #91B37E;
     --color-lightest: #F4ECDD;
     --color-accent: #FFCC01;
+    --color-wrong: #8f1402;
 
     --font-size-display: 12rem;
     --font-size-l: 2.125rem;
@@ -367,6 +368,11 @@ section.quiz {
 
             font-size: var(--font-size-m);
             font-family: inter, Arial, Helvetica, sans-serif;
+
+            &.explanation {
+                font-size: var(--font-size-s);
+                margin-block: 1rem;
+            }
         }
 
         form {
@@ -394,20 +400,17 @@ section.quiz {
                 width: 100%;
                 border: 0;
 
-                &:disabled {
-                    background-color: gray;
-                }
-
                 &.answered {
-                    scale: 1.02;
+                    scale: 1.025;
                 }
 
                 &.correct {
-                    background-color: aliceblue;
+                    background-color: var(--color-accent);
                 }
 
                 &.wrong {
-                    background-color: red;
+                    background-color: var(--color-wrong);
+                    color: var(--color-lightest);
                 }
 
                 span {
