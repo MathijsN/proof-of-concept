@@ -100,6 +100,15 @@ a {
     }
 }
 
+a.backToTop {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 10;
+}
+
+@keyframes --toTop {}
+
 section.timeline {
 
     @media screen and (width > 48rem) {

@@ -1,9 +1,10 @@
 {% render 'partials/head.liquid', title: 'index' %}
+<a href="#timeline" class="backToTop" title="Back to Top">↑</a>
 <section>
   <h1>{{ exhibit.title }}</h1>
   <p>{{ exhibit.short_description }}</p>
 </section>
-<section class="timeline">
+<section class="timeline" id="timeline">
   {% assign sortedSections = sectionsList | sort: 'start_year' %}
   {% for section in sortedSections %}
     <article class="timeline-card" id="{{ section.id }}" style="--scroll-amount: calc({{ forloop.rindex }} - 1)">
