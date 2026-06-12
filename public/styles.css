@@ -59,6 +59,10 @@ body {
     font-weight: 500;
 }
 
+html {
+    container-type: scroll-state;
+}
+
 h1 {
     font-size: var(--font-size-m);
     color: var(--color-lightest);
@@ -100,16 +104,64 @@ a {
     }
 }
 
-a.backToTop {
+div.navigation {
     position: sticky;
     right: 1rem;
     bottom: 1rem;
     z-index: 10;
     margin-bottom: 1rem;
-    justify-self: end;
 
-    @media (prefers-reduced-motion:no-preference) {
-        transition: .25s;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    a.backToTop {
+
+        @supports (container-type: scroll-state) {
+            translate: 0 calc(300%);
+
+            @media (prefers-reduced-motion:no-preference) {
+                transition: .25s;
+            }
+
+            @container scroll-state(scrollable:top) {
+                /* translate: 0 0; */
+                translate: 0 calc(100%);
+
+                &.sibling-seen {
+                    translate: 0 0;
+                }
+
+
+                @media (prefers-reduced-motion:no-preference) {
+                    transition: .25s 1s;
+                }
+            }
+        }
+    }
+
+    a.backToQuiz {
+        visibility: hidden;
+
+        &.seen {
+            visibility: visible;
+        }
+
+        @supports (container-type: scroll-state) {
+            translate: 0 calc(100% + 1em);
+
+            @media (prefers-reduced-motion:no-preference) {
+                transition: .25s;
+            }
+
+            @container scroll-state(scrollable:top) {
+                translate: 0 0;
+
+                @media (prefers-reduced-motion:no-preference) {
+                    transition: .25s 1s;
+                }
+            }
+        }
     }
 }
 
@@ -399,7 +451,8 @@ section.quiz {
             width: 100%;
 
             button {
-                display: flex;
+                display: grid;
+                grid-template-columns: min-content 1fr min-content;
                 gap: 0.75rem;
                 background-color: var(--color-lightest);
                 color: var(--color-secondary-bg);
@@ -437,5 +490,38 @@ section.quiz {
                 }
             }
         }
+    }
+}
+
+
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 1.5rem;
+    aspect-ratio: 1;
+    --c: no-repeat linear-gradient(#000 0 0);
+    background:
+        var(--c) 0 0,
+        var(--c) 50% 50%,
+        var(--c) 100% 100%;
+    animation:
+        l17 1s infinite alternate;
+    display: none;
+}
+
+@keyframes l17 {
+
+    0%,
+    10% {
+        background-size: 20% 100%
+    }
+
+    50% {
+        background-size: 20% 20%
+    }
+
+    90%,
+    100% {
+        background-size: 100% 20%
     }
 }
