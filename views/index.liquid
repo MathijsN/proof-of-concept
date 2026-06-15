@@ -37,7 +37,6 @@
       <form
         action="/#{{ question.id }}"
         method="POST"
-        {% comment %} {% if quizState[question.id] and quizState[question.id] == 'yes' %} {% endcomment %}
       >
         <input name="question" value="{{ question.id }}" type="hidden">
         {% for answer in question.options %}
@@ -54,6 +53,9 @@
               answered
               {% endif %}
             "
+            {% if quizState[question.id] %}
+              disabled
+            {% endif %}
           >
             <span>
               {{ answer.key }}

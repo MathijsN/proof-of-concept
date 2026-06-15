@@ -102,7 +102,13 @@ a {
             transition: all 0.3s ease;
         }
     }
+
+    &:not([href^="#"]) {
+        animation: none;
+    }
 }
+
+/* checken of anchor link naar section, dan geen scroll driven animatie. */
 
 div.navigation {
     position: sticky;
@@ -142,9 +148,11 @@ div.navigation {
 
     a.backToQuiz {
         visibility: hidden;
+        opacity: 0;
 
         &.seen {
             visibility: visible;
+            opacity: 1;
         }
 
         @supports (container-type: scroll-state) {
@@ -194,6 +202,12 @@ section.timeline {
 
         &:last-of-type {
             scroll-margin-top: 3rem;
+        }
+
+        &.no-animation {
+            animation: none;
+            position: relative;
+            filter: none;
         }
 
         .year,
@@ -398,6 +412,11 @@ section.quiz {
     padding-inline: 0;
     color: var(--color-lightest);
 
+    @media (width > 48rem) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    }
+
 
     article {
         height: 100dvh;
@@ -407,6 +426,11 @@ section.quiz {
         grid-template-rows: min-content min-content 1fr;
         padding-inline: 1rem;
         padding-top: 6rem;
+
+        &:has(form > button[disabled]) {
+            filter: brightness(0.7);
+            scale: 0.9;
+        }
 
         h2 {
             font-weight: 400;

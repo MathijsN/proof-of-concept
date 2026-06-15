@@ -1,3 +1,9 @@
+if (window.location.hash) {
+    document.querySelectorAll('.timeline-card').forEach(card => {
+        card.classList.add('no-animation')
+    })
+}
+
 function checkOnceInViewport(sectionId, callback) {
     const section = document.getElementById(sectionId);
     let hasSeen = false;
