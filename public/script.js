@@ -27,3 +27,31 @@ checkOnceInViewport('quiz', (section) => {
     document.querySelector('.backToQuiz').classList.add("seen")
     document.querySelector('.backToTop').classList.add("sibling-seen")
 });
+
+const forms = document.querySelectorAll('form')
+
+// if (forms) {
+//     forms.forEach(form => {
+//         form.addEventListener('submit', async function (e) {
+//             e.preventDefault()
+
+//             document.querySelector('.loader').style.display = "block"
+
+//             let formData = new FormData(form)
+
+//             const res = await fetch(form.action, {
+//                 method: 'POST',
+//                 body: formData
+//             })
+//             if (res.ok) {
+//                 const responseData = await res.json()
+
+//                 quizState = responseData
+
+//                 document.querySelector('.loader').style.display = "none"
+//             }
+//         })
+//     })
+// }
+
+console.log(quizState)
