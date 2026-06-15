@@ -30,28 +30,33 @@ checkOnceInViewport('quiz', (section) => {
 
 const forms = document.querySelectorAll('form')
 
-// if (forms) {
-//     forms.forEach(form => {
-//         form.addEventListener('submit', async function (e) {
-//             e.preventDefault()
+if (forms) {
+    forms.forEach(form => {
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault()
 
-//             document.querySelector('.loader').style.display = "block"
+            document.querySelector('.loader').style.display = "block"
 
-//             let formData = new FormData(form)
+            let formData = new FormData(form)
 
-//             const res = await fetch(form.action, {
-//                 method: 'POST',
-//                 body: formData
-//             })
-//             if (res.ok) {
-//                 const responseData = await res.json()
+            if (e.submitter) {
+                formData.append(e.submitter.name, e.submitter.value)
+            }
 
-//                 quizState = responseData
+            const res = await fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            if (res.ok) {
+                const responseData = await res.json()
 
-//                 document.querySelector('.loader').style.display = "none"
-//             }
-//         })
-//     })
-// }
+                console.log(responseData)
+                quizState = responseData
+
+                document.querySelector('.loader').style.display = "none"
+            }
+        })
+    })
+}
 
 console.log(quizState)

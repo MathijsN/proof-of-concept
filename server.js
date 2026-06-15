@@ -46,7 +46,6 @@ app.get('/detail/:slug', async function (req, res) {
 })
 
 app.post('/', async function (req, res) {
-    console.log(req.body.submittedAnswer)
 
     quizState[req.body.question] = {}
     quizState[req.body.question]['isCorrect'] = req.body.isCorrect
