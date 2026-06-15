@@ -45,7 +45,7 @@ if (forms) {
 
             const res = await fetch(form.action, {
                 method: 'POST',
-                body: formData
+                body: new URLSearchParams(formData)
             })
             if (res.ok) {
                 const responseData = await res.json()

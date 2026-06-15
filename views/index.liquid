@@ -37,7 +37,6 @@
       <form
         action="/#{{ question.id }}"
         method="POST"
-        enctype="multipart/form-data"
       >
         <input name="question" value="{{ question.id }}" type="hidden">
         {% for answer in question.options %}
