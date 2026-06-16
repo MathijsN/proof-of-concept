@@ -530,7 +530,6 @@ section.quiz {
         var(--c) 100% 100%;
     animation:
         l17 1s infinite alternate;
-    display: none;
 }
 
 @keyframes l17 {

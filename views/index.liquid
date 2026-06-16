@@ -62,7 +62,7 @@
               {{ answer.key }}
             </span>
             {{ answer.answer }}
-            <span class="loader"></span>
+            <span class="loader" hidden></span>
           </button>
         {% endfor %}
         {% if quizState[question.id] and quizState[question.id].isCorrect == 'yes' %}

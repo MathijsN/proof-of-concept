@@ -43,7 +43,7 @@ if (forms) {
             const closestLoader = e.submitter.querySelector('.loader')
 
             if (closestLoader) {
-                closestLoader.style.display = "block"
+                closestLoader.hidden = false
             }
 
             let formData = new FormData(form)
@@ -68,7 +68,7 @@ if (forms) {
                 form.outerHTML = newState.outerHTML
 
                 if (closestLoader) {
-                    closestLoader.style.display = "none"
+                    closestLoader.hidden = true
                 }
             }
         })
