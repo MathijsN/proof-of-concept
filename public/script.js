@@ -33,9 +33,20 @@ const forms = document.querySelectorAll('form')
 if (forms) {
     forms.forEach(form => {
         form.addEventListener('submit', async function (e) {
+
+            if (!form.hasAttribute('data-enhanced')) {
+                return
+            }
+
             e.preventDefault()
 
-            document.querySelector('.loader').style.display = "block"
+            const button = e.submitter
+
+            const closestLoader = button.querySelector('.loader')
+
+            if (closestLoader) {
+                closestLoader.style.display = "block"
+            }
 
             let formData = new FormData(form)
 
@@ -47,13 +58,20 @@ if (forms) {
                 method: 'POST',
                 body: new URLSearchParams(formData)
             })
+
+
             if (res.ok) {
-                const responseData = await res.json()
+                const responseData = await res.text()
+                const parser = new DOMParser()
+                const responseDOM = parser.parseFromString(responseData, 'text/html')
 
-                console.log(responseData)
-                quizState = responseData
+                const newState = responseDOM.querySelector('[data-enhanced="' + form.getAttribute('data-enhanced') + '"]')
 
-                document.querySelector('.loader').style.display = "none"
+                form.outerHTML = newState.outerHTML
+
+                if (closestLoader) {
+                    closestLoader.style.display = "none"
+                }
             }
         })
     })

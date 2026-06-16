@@ -37,6 +37,7 @@
       <form
         action="/#{{ question.id }}"
         method="POST"
+        data-enhanced="formulier-{{ question.id }}"
       >
         <input name="question" value="{{ question.id }}" type="hidden">
         {% for answer in question.options %}
