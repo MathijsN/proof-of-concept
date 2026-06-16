@@ -40,9 +40,7 @@ if (forms) {
 
             e.preventDefault()
 
-            const button = e.submitter
-
-            const closestLoader = button.querySelector('.loader')
+            const closestLoader = e.submitter.querySelector('.loader')
 
             if (closestLoader) {
                 closestLoader.style.display = "block"
