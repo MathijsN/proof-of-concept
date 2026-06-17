@@ -517,34 +517,22 @@ section.quiz {
     }
 }
 
-
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
 .loader {
     width: 1.5rem;
-    aspect-ratio: 1;
-    --c: no-repeat linear-gradient(#000 0 0);
-    background:
-        var(--c) 0 0,
-        var(--c) 50% 50%,
-        var(--c) 100% 100%;
-    animation:
-        l17 1s infinite alternate;
+    aspect-ratio: 1/1;
+    border: 2px solid var(--color-secondary-bg);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
 }
 
-@keyframes l17 {
-
-    0%,
-    10% {
-        background-size: 20% 100%
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
     }
 
-    50% {
-        background-size: 20% 20%
-    }
-
-    90%,
     100% {
-        background-size: 100% 20%
+        transform: rotate(360deg);
     }
 }
