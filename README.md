@@ -6,7 +6,6 @@
   * [Gebruik](#gebruik)
   * [Kenmerken](#kenmerken)
   * [Installatie](#installatie)
-  * [Bronnen](#bronnen)
   * [Licentie](#licentie)
 
 ## Beschrijving
@@ -20,6 +19,8 @@ Q42 was opzoek naar een invulling van een nieuw concept. Het concept is een tijd
 
 
 <img width="1384" height="1557" alt="q42" src="https://github.com/user-attachments/assets/da5b465a-b4e7-46f0-8859-3a70e339dbae" />
+
+[Toegang tot het Figma bestand met alle design iteraties](https://www.figma.com/design/1mwBFVUDrff27YKpde8kwU/Q42-x-Teylers?node-id=0-1&t=GqoWra5KznNd9k67-1)
 
 
 ## Gebruik
